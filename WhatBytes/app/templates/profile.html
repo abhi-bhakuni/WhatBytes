@@ -8,7 +8,10 @@
 <body>
     <div class="profile-container">
         <h1>My Profile</h1>
-        <p>{{ username }}</p>
+        <p>Username: {{ username }}</p>
+        <p>Email: {{ email }}</p>
+        <p>Date Joined: {{ date_joined }}</p>
+        <a href="{% url 'DashboardPage' %}">Go to Dashboard</a><br>
         <a href="{% url 'ChangePasswordPage' %}">Change Password</a><br>
         <a href="{% url 'LogoutPage' %}">Signout</a>
     </div>
