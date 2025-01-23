@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatBytes Change Password</title>
+</head>
+<body>
+    <div class="change-container">
+        <h1>Change Password</h1>
+        <form method="post" class="signup-form">
+            {% csrf_token %}
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Enter your password" required>
+            <ul class="signup-password-instruction">
+                <li>Password length should be greater than 8</li>
+                <li>Password should contain capital letters</li>
+                <li>Password should contain digits</li>
+                <li>Password should contain special characters</li>
+            </ul>
+            <button type="submit" class="signup-form-button">Continue</button>
+            {% if messages %}
+            <ul class="signup-form-messages">
+                {% for message in messages %}
+                <p {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>

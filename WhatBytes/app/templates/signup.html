@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatBytes Signup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .signup-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            box-shadow: 0px 2px 6px 0px grey;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .signup-password-instruction {
+            padding: 15px;
+            color: grey;
+        }
+
+        .signup-form-messages {
+            color: red;
+        }
+
+        .signup-form-button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="signup-container">
+        <h1>Signup</h1>
+        <form method="post" class="signup-form">
+            {% csrf_token %}
+            <label for="emailID">Email</label>
+            <input type="email" name="emailID" placeholder="Enter your email" required>
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Enter your password" required>
+            <ul class="signup-password-instruction">
+                <li>Password length should be greater than 8</li>
+                <li>Password should contain capital letters</li>
+                <li>Password should contain digits</li>
+                <li>Password should contain special characters</li>
+            </ul>
+            <label for="repassword">Confirm Password</label>
+            <input type="password" name="repassword" placeholder="Confirm your password" required>
+            <button type="submit" class="signup-form-button">Continue</button>
+            {% if messages %}
+            <ul class="signup-form-messages">
+                {% for message in messages %}
+                <p {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <a href="{% url 'LoginPage' %}">Already have an account?</a>
+        </form>
+    </div>
+</body>
+
+</html>

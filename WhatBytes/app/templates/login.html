@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatBytes Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            box-shadow: 0px 2px 6px 0px grey;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .login-form-messages {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            <label for="emailID">Email</label>
+            <input type="email" name="emailID" placeholder="Enter your email" required>
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Enter your password" required>
+            <button type="submit">Log In</button>
+            {% if messages %}
+            <ul class="login-form-messages">
+                {% for message in messages %}
+                <p {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <a href="{% url 'SignupPage' %}">Create new account</a>
+            <a href="{% url 'ForgotPasswordPage' %}">Forgot Password</a>
+        </form>
+    </div>
+</body>
+
+</html>
